@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>City Finder</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: firebrick}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover  {
+            background-color: red;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<header th:fragment="header">
+    <div  style="color: white">
+        <div class="container">
+            <h3  style="font-max-size: medium" >Manager Product</h3>
+        </div>
+
+
+        <nav class="navbar navbar-light" style="background-color: black" >
+            <div class="container">
+                <div class="col">
+                    <div class="dropdown">
+                        <button class="btn btn-danger dropdown-toggle">PRODUCT</button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/home}">List Product</a>
+                            <a th:href="@{/create}">Create Product</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+
+                    <div>
+                        <form class="d-flex" th:action="@{/home}" method="get">
+                            <input class="form-control me-2" type="text" name="s" placeholder="SearchByName...." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </nav>
+    </div>
+
+
+
+</header>
+</body>
+</html>

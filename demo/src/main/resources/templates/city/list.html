@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/weblayout :: head" >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="/weblayout :: header"></header>
+<div class="container">
+    <hr>
+    <h1>Cities</h1>
+    <hr>
+    <div class="row">
+
+        <div class="col" >
+            <th:block th:if="${message}">
+                <p th:text="${message}"></p>
+            </th:block>
+            <!--            <form>-->
+            <!--                Search by name:-->
+            <!--                <input name="s" type="text"/>-->
+            <!--                <input class="btn btn-secondary" type="submit" th:value="Search"/>-->
+            <!--            </form>-->
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <table border="1" class="table table-dark table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Country</th>
+
+                <th>Edit | Delete</th>
+
+            </tr>
+            <th:block th:each="city : ${cities}">
+                <tr>
+                    <td th:text="${city.getId()}"></td>
+                    <td><a th:href="@{/info/__${city.id}__ }"><span th:text="${city.getName()}"></span></a></td>
+                    <td th:text="${city.getCountry().getName()}"></td>
+                    <!--                    <td th:text="${city.getAria()}"></td>-->
+                    <!--                    <td th:text="${city.getPopulation()}"></td>-->
+
+                    <!--                    <td th:text="${city.getGdp()}"></td>-->
+                    <!--                    <td th:text="${city.getDesv()}"></td>-->
+
+                    <td>
+                        <a class="btn btn-warning" th:href="@{/edit/__${city.id}__ }">Edit</a> |
+                        <a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a>
+                    </td>
+                    <!--                    <td><a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a></td>-->
+                </tr>
+            </th:block>
+        </table>
+        <div>
+            <a th:href="@{'/home'(page=${cities.number})}" th:if="${cities.hasPrevious()}">Previous</a>
+            <span th:text="${cities.number + 1}"></span>/<span th:text="${cities.totalPages}"></span>
+            <a th:href="@{'/home'(page=${cities.number + 2})}" th:if="${cities.hasNext()}">Next</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
